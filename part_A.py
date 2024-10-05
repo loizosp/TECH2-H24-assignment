@@ -1,35 +1,35 @@
-"""
-TECH2 mandatory assignment - Part A
 
-Write the implementation of part A of the exercise below.
-"""
+from math import sqrt
 
-def std_loops(x):
-    """
-    Compute standard deviation of x using loops.
+# using loops
+def loops(x):
+    N = len(x)
+    mean = sum(x) / N 
+    sum_of_sq = 0
+    for num in x:
+        sum_of_sq = sum_of_sq + num ** 2
+    mean_of_sq = sum_of_sq / N
+    variance = mean_of_sq - mean ** 2
 
-    Parameters
-    ----------
-    x: Sequence of numbers
+    return sqrt(variance)
 
-    Returns
-    -------
-    sd : float
-        Standard deviation of the list of numbers.
-    """
+# using builtin function
+def builtin(x):
+    N = len(x)
+    mean = sum(x) / N
+    mean_of_sq = sum([num ** 2 for num in x]) / N
+    variance = mean_of_sq - mean ** 2
 
-def std_builtin(x):
-    """
-    Compute standard deviation of x using the built-in functions sum()
-    and len().
+    return sqrt(variance)
 
-    Parameters
-    ----------
-    x: Sequence of numbers
+import numpy as np
 
-    Returns
-    -------
-    sd : float
-        Standard deviation of the list of numbers.
-    """
-    
+# using numpy
+def numpy(x):
+    return np.std(x)
+
+num_list = [1, 2, 3, 4, 5]
+
+print("Standard deviation using loops:", loops(num_list))
+print("Standard deviation using built in functions:", builtin(num_list))
+print("Standard Deviation using NumPy:", numpy(num_list))
